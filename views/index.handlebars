@@ -1,13 +1,41 @@
-<div class="header">
-    <img src="#" alt="yummy burger pic">
-    <h1>Eat-Da-Burger!</h1>
-</div>
+<div class="container">
 
-<div class="burger-form">
-    <form>
-        <textarea name="burger-input" placeholder="Burger of choice"></textarea>
+    <div class="header">
+        <img src="#" alt="yummy burger pic">
+        <h1>Eat-Da-Burger!</h1>
+    </div>
+    <div class="row">
+
+        <div class="undevoured">
+            <ul>
+                {{#each burgers}}
+                <div>
+                    {{> burgers/burger devoured=true}}
+                </div>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="devoured">
+            <ul>
+                {{#each burgers}} {{#if this.devoured}}
+                <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly> {{/if}} {{/each}}
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="burger-form">
+        <form action="/api/burgers" method="POST">
+            <textarea name="burger-name" id="burger-input" name="burger" placeholder="Burger of choice"></textarea>
+        </form>
         <button type="submit" id="submit-button">Submit</button>
-    </form>
-</div>
 
-<p>Enter a burger you would like to eat, click submit, then enjoy!</p>
+    </div>
+
+    <p>Enter a burger you would like to eat, click submit, then enjoy!</p>
+
+</div>
