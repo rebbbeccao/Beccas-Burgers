@@ -26,7 +26,7 @@
         max-width: 970px;
     }
 
-    
+
 
     .row {
         justify-content: center;
@@ -58,11 +58,16 @@
         width: 100%;
         max-width: 485px;
     }
-    
+
+    .undevoured {
+        width: 100%;
+        font-size: 18px;
+    }
+
     .devour-it {
         font-family: 'Luckiest Guy', cursive;
     }
-    
+
     #burger-input {
         display: inline-block;
         width: 520px;
@@ -83,7 +88,6 @@
     #devoured-burgers {
         font-size: 18px;
     }
-
 </style>
 
 
@@ -101,13 +105,14 @@
         <div class="col-xs-6" id="undevoured-div">
 
             <div class="undevoured">
+
+                {{#each burgers}} {{#unless this.devoured}}
                 <ul>
-                    {{#each burgers}}
-                    <div>
-                        {{> burgers/burger devoured=true}}
-                    </div>
-                    {{/each}}
+                    {{burger_name}}
+                    <button type="submit" class="btn btn-outline-danger btn-sm devour-it" value="{{id}}" data-newdevour="{{devoured}}">Devour it</button>
                 </ul>
+                {{/unless}} {{/each}}
+
             </div>
         </div>
         <div class="col-xs-6" id="devoured-div">
