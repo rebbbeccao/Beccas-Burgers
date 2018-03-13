@@ -1,26 +1,122 @@
+<style>
+    body {
+        background-color: rgb(246, 253, 181);
+        font-family: 'Patrick Hand', cursive;
+        font-size: 14px;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+    ul {
+        padding: 3px;
+        margin: 3px;
+    }
+
+    #devoured-burgers {
+        padding: 3px;
+        margin: 3px;
+    }
+
+    .container {
+        align-content: center;
+        width: 100%;
+        max-width: 970px;
+    }
+
+    
+
+    .row {
+        justify-content: center;
+    }
+
+    #header {
+        align-content: center;
+        padding-bottom: 25px;
+        font-family: 'Luckiest Guy', cursive;
+    }
+
+    #header-pic {
+        align-content: center;
+    }
+
+    #burger-submit {
+        justify-content: center;
+        font-family: 'Luckiest Guy', cursive;
+    }
+
+    #undevoured-div {
+        display: inline-block;
+        width: 100%;
+        max-width: 485px;
+    }
+
+    #devoured-div {
+        display: inline-block;
+        width: 100%;
+        max-width: 485px;
+    }
+    
+    .devour-it {
+        font-family: 'Luckiest Guy', cursive;
+    }
+    
+    #burger-input {
+        display: inline-block;
+        width: 520px;
+        margin-top: 15px;
+        margin-bottom: 7px;
+        padding: 10px;
+    }
+
+    #instructions {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #burger-handlebar {
+        font-size: 18px;
+    }
+
+    #devoured-burgers {
+        font-size: 18px;
+    }
+
+</style>
+
+
 <div class="container">
 
-    <div class="header">
-        <img src="#" alt="yummy burger pic">
-        <h1>Eat-Da-Burger!</h1>
+    <div class="row" id="header-pic">
+        <img src="/assets/bacon-burger.png" alt="yummy burger pic">
     </div>
+    <div class="row" id="header">
+        <h1 id="eatdaburger">Eat-Da-Burger!</h1>
+    </div>
+
+
     <div class="row">
+        <div class="col-xs-6" id="undevoured-div">
 
-        <div class="undevoured">
-            <ul>
-                {{#each burgers}}
-                <div>
-                    {{> burgers/burger devoured=true}}
-                </div>
-                {{/each}}
-            </ul>
+            <div class="undevoured">
+                <ul>
+                    {{#each burgers}}
+                    <div>
+                        {{> burgers/burger devoured=true}}
+                    </div>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
-
-        <div class="devoured">
-            <ul>
-                {{#each burgers}} {{#if this.devoured}}
-                <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly> {{/if}} {{/each}}
-            </ul>
+        <div class="col-xs-6" id="devoured-div">
+            <div class="devoured">
+                <ul id="devoured-burgers">
+                    {{#each burgers}} {{#if this.devoured}}
+                    <input id="devoured-burgers" class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly> {{/if}} {{/each}}
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -28,14 +124,23 @@
 
 
 
-    <div class="burger-form">
-        <form action="/api/burgers" method="POST">
-            <textarea name="burger-name" id="burger-input" name="burger" placeholder="Burger of choice"></textarea>
-        </form>
-        <button type="submit" id="submit-button">Submit</button>
+    <div class="row" id="burger-text">
+        <div class="burger-form">
+            <form action="/api/burgers" method="POST">
+                <textarea name="burger-name" id="burger-input" name="burger" placeholder="Burger of choice"></textarea>
+            </form>
+        </div>
+    </div>
+    <div class="row" id="burger-submit">
+        <button type="submit" id="submit-button" class="btn btn-outline-success">Submit</button>
 
     </div>
+</div>
 
-    <p>Enter a burger you would like to eat, click submit, then enjoy!</p>
+<div class="row">
+    <p id="instructions">Enter a burger you would like to eat, click submit, then enjoy!</p>
+
+</div>
+
 
 </div>
